@@ -21,4 +21,15 @@ after_success:
   - docker push sharminator/multi-server
   - docker push sharminator/multi-worker
 
-
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker-new
+  env: Multi-docker-new-env
+  bucket_name: elasticbeanstalk-us-east-1-425670648728
+  bucket_path: docker-multi
+  on:
+    branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+      SECURE: $AWS_SECRET_KEY
